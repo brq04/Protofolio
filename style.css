@@ -11,68 +11,101 @@ body {
   background-color: #1f1f1f;
   color: #e0e0e0;
   line-height: 1.6;
-  scroll-behavior: smooth;
 }
 
+/* الهيدر */
 .main-header {
   background: #141414;
-  padding: 2rem 1rem;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
+  height: 60px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .main-header h1 {
-  font-size: 3rem;
-  color: #f1c40f;
+  font-size: 1.5rem;
+  color: #ffffff;
   letter-spacing: 2px;
 }
 
 .main-header p {
+  display: none;
   color: #bbb;
-  margin: 0.5rem 0 1rem;
   font-weight: 300;
 }
 
+/* قائمة التنقل */
 .nav-links {
   list-style: none;
   display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
   justify-content: center;
-  gap: 2rem;
   flex-wrap: wrap;
 }
 
-.nav-links a {
+.nav-links li a {
   color: #e0e0e0;
-  text-decoration: none;
   font-weight: 500;
+  text-decoration: none;
+  font-size: 0.9rem;
   position: relative;
   transition: color 0.3s ease;
 }
 
-.nav-links a::after {
+.nav-links li a::after {
   content: '';
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: #f1c40f;
+  background-color: #3498db;
   transition: width 0.3s;
 }
 
-.nav-links a:hover::after {
+.nav-links li a:hover::after {
   width: 100%;
 }
 
+/* زر القائمة للجوال */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+}
+
+/* محتوى الصفحة */
 main {
   max-width: 1000px;
   margin: 3rem auto;
   padding: 0 1.5rem;
+  padding-top: 80px;
 }
 
+/* الأقسام */
 .section {
   margin-bottom: 4rem;
   background-color: #2a2a2a;
@@ -88,9 +121,9 @@ main {
 
 .section h2 {
   font-size: 2rem;
-  color: #f1c40f;
+  color: #3498db;
   margin-bottom: 1rem;
-  border-left: 5px solid #f1c40f;
+  border-left: 5px solid #3498db;
   padding-left: 1rem;
 }
 
@@ -101,6 +134,7 @@ main {
   margin-top: 0.5rem;
 }
 
+/* شبكة المهارات */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -110,8 +144,8 @@ main {
 
 .skills-grid span {
   background: #1f1f1f;
-  border: 1px solid #f1c40f;
-  color: #f1c40f;
+  border: 1px solid #3498db;
+  color: #3498db;
   padding: 0.6rem 1rem;
   border-radius: 30px;
   text-align: center;
@@ -120,10 +154,11 @@ main {
 }
 
 .skills-grid span:hover {
-  background: #f1c40f;
-  color: #1f1f1f;
+  background: #3498db;
+  color: #fff;
 }
 
+/* قسم البطل */
 .hero {
   display: flex;
   align-items: center;
@@ -144,6 +179,7 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* كروت المشاريع */
 .project-card {
   display: flex;
   background-color: #1f1f1f;
@@ -165,13 +201,14 @@ main {
 
 .project-card h3 {
   margin-bottom: 0.5rem;
-  color: #f1c40f;
+  color: #3498db;
 }
 
 .project-card p {
   color: #ccc;
 }
 
+/* الشهادات */
 .certificates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -201,7 +238,7 @@ main {
 }
 
 .certificate-card h4 {
-  color: #f1c40f;
+  color: #3498db;
   margin-bottom: 0.5rem;
 }
 
@@ -210,6 +247,7 @@ main {
   font-size: 0.95rem;
 }
 
+/* التواصل الاجتماعي */
 .social-icons {
   display: flex;
   gap: 1.5rem;
@@ -223,14 +261,35 @@ main {
 }
 
 .social-icons a:hover {
-  color: #f1c40f;
+  color: #3498db;
 }
 
+/* الشاشات الصغيرة */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
   .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #141414;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    max-height: 300px;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
   }
 
   .hero {
@@ -245,5 +304,13 @@ main {
 
   .project-card img {
     width: 100%;
+  }
+
+  .main-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .nav-links li a {
+    font-size: 0.9rem;
   }
 }
