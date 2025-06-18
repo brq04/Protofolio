@@ -292,3 +292,72 @@ main {
     display: none;
   }
 }
+/* تنسيق زر الهمبرغر */
+.menu-toggle {
+  display: none; /* مخفي بشكل افتراضي */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
+}
+
+/* القائمة أفقية افتراضياً */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* تنسيق الروابط */
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+  /* إظهار زر الهمبرغر */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* إخفاء القائمة بشكل افتراضي */
+  .nav-links {
+    position: fixed;
+    top: 60px; /* حسب ارتفاع الهيدر */
+    left: 0;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  /* فتح القائمة عند إضافة الكلاس open */
+  .nav-links.open {
+    max-height: 300px; /* يكفي لعرض الروابط */
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
+}
