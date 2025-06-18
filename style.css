@@ -13,9 +13,10 @@ body {
   line-height: 1.6;
 }
 
+/* الهيدر */
 .main-header {
   background: #141414;
-  position: fixed; /* ثبت الهيدر */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -26,28 +27,25 @@ body {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  text-align: center;
 }
 
 .main-header h1 {
   font-size: 1.5rem;
   color: #ffffff;
   letter-spacing: 2px;
-  margin: 0;
 }
 
 .main-header p {
-  display: none; /* أخفي الوصف في الجوال */
+  display: none;
   color: #bbb;
-  margin: 0.5rem 0 1rem;
   font-weight: 300;
 }
 
-/* التنقل */
+/* قائمة التنقل */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
   justify-content: center;
@@ -78,12 +76,33 @@ body {
   width: 100%;
 }
 
-/* محتوى الصفحة يبدأ بعد الهيدر */
+/* زر القائمة للجوال */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+}
+
+/* محتوى الصفحة */
 main {
   max-width: 1000px;
   margin: 3rem auto;
   padding: 0 1.5rem;
-  padding-top: 80px; /* مساحة للهيدر + فرق بسيط */
+  padding-top: 80px;
 }
 
 /* الأقسام */
@@ -139,7 +158,7 @@ main {
   color: #fff;
 }
 
-/* قسم البطل (hero) */
+/* قسم البطل */
 .hero {
   display: flex;
   align-items: center;
@@ -160,7 +179,7 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* بطاقة المشاريع */
+/* كروت المشاريع */
 .project-card {
   display: flex;
   background-color: #1f1f1f;
@@ -189,7 +208,7 @@ main {
   color: #ccc;
 }
 
-/* شبكة الشهادات */
+/* الشهادات */
 .certificates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -228,7 +247,7 @@ main {
   font-size: 0.95rem;
 }
 
-/* أيقونات التواصل الاجتماعي */
+/* التواصل الاجتماعي */
 .social-icons {
   display: flex;
   gap: 1.5rem;
@@ -245,12 +264,32 @@ main {
   color: #3498db;
 }
 
-/* استجابة الشاشات الصغيرة */
+/* الشاشات الصغيرة */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
   .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #141414;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    max-height: 300px;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
   }
 
   .hero {
@@ -266,98 +305,12 @@ main {
   .project-card img {
     width: 100%;
   }
-}
-
-@media (max-width: 600px) {
-  .main-header {
-    height: 50px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 
   .main-header h1 {
     font-size: 1.2rem;
   }
 
-  .nav-links {
-    gap: 0.8rem;
-  }
-
   .nav-links li a {
-    font-size: 0.8rem;
-  }
-
-  /* أخفي الوصف في الهواتف */
-  .main-header p {
-    display: none;
-  }
-}
-/* تنسيق زر الهمبرغر */
-.menu-toggle {
-  display: none; /* مخفي بشكل افتراضي */
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin-left: 1rem;
-}
-
-.menu-toggle .bar {
-  height: 3px;
-  width: 100%;
-  background-color: #333;
-  border-radius: 2px;
-}
-
-/* القائمة أفقية افتراضياً */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  padding-left: 0;
-  margin: 0;
-}
-
-/* تنسيق الروابط */
-.nav-links li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-}
-
-/* استجابة للشاشات الصغيرة */
-@media (max-width: 768px) {
-  /* إظهار زر الهمبرغر */
-  .menu-toggle {
-    display: flex;
-  }
-
-  /* إخفاء القائمة بشكل افتراضي */
-  .nav-links {
-    position: fixed;
-    top: 60px; /* حسب ارتفاع الهيدر */
-    left: 0;
-    right: 0;
-    background-color: white;
-    flex-direction: column;
-    align-items: center;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 999;
-  }
-
-  /* فتح القائمة عند إضافة الكلاس open */
-  .nav-links.open {
-    max-height: 300px; /* يكفي لعرض الروابط */
-  }
-
-  .nav-links li {
-    margin: 1rem 0;
+    font-size: 0.9rem;
   }
 }
